@@ -18,7 +18,7 @@ jobs:
         with:
           name: action-package
           path: |
-            action.yaml
+            action.yml
             dist/*
   test:
     runs-on: ubuntu-latest
