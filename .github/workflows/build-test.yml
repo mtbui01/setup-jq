@@ -14,5 +14,18 @@ jobs:
           npm install
       - run: |
           npm run all
-      - name: run test
-        uses: ./
+      - uses: actions/upload-artifact@v2
+        with:
+          name: action-package
+          path: |
+            action.yaml
+            dist/*
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: action-package
+    - name: run test
+      uses: ./
+
