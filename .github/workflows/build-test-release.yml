@@ -51,8 +51,9 @@ jobs:
        git tag -fa v$PACKAGE_VERSION -m "Update tag"
        git push origin v$PACKAGE_VERSION --force
        npm version patch
-       git add --all
+       git add package.json
        git commit -m "prepare for new version"
-       git push
+       git push --force
+
 
 
