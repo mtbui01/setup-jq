@@ -53,9 +53,6 @@ jobs:
     - name: Increment Version
       run: |
        npm version patch
-       git status
-       git add package.json
-       git commit -m "prepare for new version"
        git push --force
 
 
