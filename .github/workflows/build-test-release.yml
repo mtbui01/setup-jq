@@ -50,6 +50,8 @@ jobs:
        echo $PACKAGE_VERSION
        git tag -fa v$PACKAGE_VERSION -m "Update tag"
        git push origin v$PACKAGE_VERSION --force
+       eho "Update ro next version"
+       gt pull
        npm version patch
        git add package.json
        git commit -m "prepare for new version"
