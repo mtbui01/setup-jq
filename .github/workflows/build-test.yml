@@ -31,14 +31,18 @@ jobs:
       uses: ./
   release:
     runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, '[release]')"
     needs: test
     steps:
     - uses: actions/checkout@v2
     - run: |
+       git config --local user.email "action@github.com"
+       git config --local user.name "GitHub Action"                    
        npm install
        npm run build && npm run package
+       git add dist
        PACKAGE_VERSION=$(node -p "require('./package.json').version")
        echo $PACKAGE_VERSION
+       git tag -fa v$PACKAGE_VERSION -m "Update tag"
+       git push origin v$PACKAGE_VERSION --force
   
-
-
