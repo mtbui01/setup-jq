@@ -45,7 +45,7 @@ jobs:
        npm install
        npm run build && npm run package
        git add dist
-       git commit -m "new release"
+       git commit --allow-empty -m "new release"
        PACKAGE_VERSION=$(node -p "require('./package.json').version")
        echo $PACKAGE_VERSION
        git tag -fa v$PACKAGE_VERSION -m "Update tag"
