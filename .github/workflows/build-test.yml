@@ -42,7 +42,7 @@ jobs:
        npm run build && npm run package
        npm version patch
        git add --all
-       git commit -a -m "new release"
+       git commit -m "new release"
        PACKAGE_VERSION=$(node -p "require('./package.json').version")
        echo $PACKAGE_VERSION
        git tag -fa v$PACKAGE_VERSION -m "Update tag"
