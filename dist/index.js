@@ -42,6 +42,7 @@ class AppInstaller {
     install(version) {
         return __awaiter(this, void 0, void 0, function* () {
             core.debug('install app called ${version}');
+            console.log('install app called' + version);
         });
     }
 }
