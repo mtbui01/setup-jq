@@ -40,7 +40,9 @@ jobs:
        git config --local user.name "GitHub Action"                    
        npm install
        npm run build && npm run package
-       git add dist
+       npm version patch
+       git add dist package.json
+       git commit -a -m "new release"
        PACKAGE_VERSION=$(node -p "require('./package.json').version")
        echo $PACKAGE_VERSION
        git tag -fa v$PACKAGE_VERSION -m "Update tag"
