@@ -7,6 +7,7 @@ on: # rebuild any PRs and main branch changes
 
 jobs:
   build: # make sure build/ci work properly
+    name: Build Package
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,6 +22,7 @@ jobs:
             action.yml
             dist/*
   test:
+    name: Test the action
     runs-on: ubuntu-latest
     needs: build       
     steps:
@@ -30,12 +32,14 @@ jobs:
     - name: run test
       uses: ./
   release:
+    name: Publish new Release
     runs-on: ubuntu-latest
     if: "contains(github.event.head_commit.message, '[release]')"
     needs: test
     steps:
     - uses: actions/checkout@v2
-    - run: |
+    - name: build release
+      run: |
        git config --local user.email "action@github.com"
        git config --local user.name "GitHub Action"                    
        npm install
