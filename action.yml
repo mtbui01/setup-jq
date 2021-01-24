@@ -5,7 +5,7 @@ inputs:
   version: 
     required: true
     description: 'input description here'
-    default: '1.0'
+    default: '1.6'
 runs:
   using: 'node12'
   main: 'dist/index.js'
