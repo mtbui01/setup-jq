@@ -2,12 +2,17 @@ import * as core from '@actions/core'
 import * as os from 'os'
 import {Installer} from './installer'
 
-const toolName = 'app'
+const toolName = 'jq'
 
 export class AppInstaller implements Installer {
   async install(version: string) {
     const url = getDownloadUrl(version, toolName)
     console.log(`install app called version : ${version} url : ${url}`)
+    const appPath = await getBinary(toolName, version, url)
+
+    console.log(`${toolName} has been cached at ${appPath}`)
+
+    core.addPath(path.dirname(appPath))
   }
 }
 
