@@ -2,11 +2,12 @@ import * as core from '@actions/core'
 import * as os from 'os'
 import * as path from 'path'
 import {Installer} from './installer'
+import {getBinary} from './utils'
 
 const toolName = 'jq'
 
 export class AppInstaller implements Installer {
-  async install(version: string) {
+  async install(version: string): Promise<void> {
     const url = getDownloadUrl(version, toolName)
     console.log(`install app called version : ${version} url : ${url}`)
     const appPath = await getBinary(toolName, version, url)
@@ -18,11 +19,11 @@ export class AppInstaller implements Installer {
 }
 
 function getDownloadUrl(version: string, tool: string): string {
-  let appname = getAppName(tool)
+  const appname = getAppName(tool)
   return `https://github.com/stedolan/jq/releases/download/jq-${version}/${appname}`
 }
 
-function getAppName(tool: string) {
+function getAppName(tool: string): string {
   let appname: string | null = null
   switch (os.platform()) {
     case 'linux':
