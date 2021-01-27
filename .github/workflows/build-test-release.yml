@@ -1,12 +1,16 @@
 name: 'build-test-release'
-on:
+on:  
   pull_request:
+  workflow_dispatch:
   push:
     branches:
       - main
+    paths-ignore:
+    - '.github/**'
+    - 'README.md'
 
 jobs:
-  build: # make sure build/ci work properly
+  build:
     name: Build Package
     runs-on: ubuntu-latest
     steps:
@@ -34,7 +38,7 @@ jobs:
   release:
     name: Publish new release
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, '[release]')"
+    if: github.event_name != 'pull_request'
     needs: test
     steps:
     - uses: actions/checkout@v2
@@ -47,13 +51,9 @@ jobs:
        git add dist
        git commit --allow-empty -m "new release"
        PACKAGE_VERSION=$(node -p "require('./package.json').version")
-       echo $PACKAGE_VERSION
        git tag -fa v$PACKAGE_VERSION -m "Update tag"
        git push origin v$PACKAGE_VERSION --force
     - name: Increment Version
       run: |
        npm version patch
        git push --force
-
-
-
