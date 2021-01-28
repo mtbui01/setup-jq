@@ -54,7 +54,11 @@ function getAppName(tool: string): string {
   return appname
 }
 
-async function getBinary(toolName: string, version: string, url: string): Promise<string> {
+async function getBinary(
+  toolName: string,
+  version: string,
+  url: string
+): Promise<string> {
   let cachedToolpath: string
   cachedToolpath = tc.find(toolName, version)
 
