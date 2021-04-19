@@ -29,11 +29,11 @@
     "@actions/tool-cache": "1.6.1"
   },
   "devDependencies": {
-    "@types/jest": "26.0.21",
+    "@types/jest": "26.0.22",
     "@types/node": "~14.14.41",
-    "@typescript-eslint/parser": "~4.20.0",
+    "@typescript-eslint/parser": "~4.22.0",
     "@vercel/ncc": "0.27.0",
-    "eslint": "7.22.0",
+    "eslint": "7.23.0",
     "eslint-plugin-github": "4.1.2",
     "eslint-plugin-jest": "24.3.2",
     "jest": "26.6.3",
